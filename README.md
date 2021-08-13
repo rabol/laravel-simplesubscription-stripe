@@ -1,4 +1,4 @@
-# Laravel Simplesub scription Stripe
+# Laravel Simple subscription Stripe
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/rabol/laravel-simplesubscription-stripe.svg?style=flat-square)](https://packagist.org/packages/rabol/laravel-simplesubscription-stripe)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/rabol/laravel-simplesubscription-stripe/run-tests?label=tests)](https://github.com/rabol/laravel-simplesubscription-stripe/actions?query=workflow%3Arun-tests+branch%3Amain)
