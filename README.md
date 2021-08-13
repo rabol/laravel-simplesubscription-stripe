@@ -15,12 +15,13 @@ As this package uses the same DB structure as Laravel Cashier, it's very easy to
 
 So why do you even need this package ?
 
-Well, understanding Laravel Cashier andgetting it to work properly might take you 2-3 weeks, while with this package you will be up and running in a few hours.
+Well, understanding Laravel Cashier and getting it to work properly might take you 2-3 weeks, while with this package you will be up and running in a few hours.
 
+
+NOTE: THIS IS STILL JUST A SKELETON, CODE WILL BE AVAILABLE SHORTLY
 
 ---
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
 ## Support us
 
