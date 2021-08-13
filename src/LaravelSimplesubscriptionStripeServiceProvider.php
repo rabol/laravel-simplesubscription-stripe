@@ -2,9 +2,9 @@
 
 namespace Rabol\LaravelSimplesubscriptionStripe;
 
+use Rabol\LaravelSimplesubscriptionStripe\Commands\LaravelSimplesubscriptionStripeCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Rabol\LaravelSimplesubscriptionStripe\Commands\LaravelSimplesubscriptionStripeCommand;
 
 class LaravelSimplesubscriptionStripeServiceProvider extends PackageServiceProvider
 {
