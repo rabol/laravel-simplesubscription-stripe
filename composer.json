@@ -1,17 +1,17 @@
 {
-    "name": "vendor_slug/package_slug",
-    "description": ":package_description",
+    "name": "rabol/laravel-simplesubscription-stripe",
+    "description": "This is my package LaravelSimplesubscriptionStripe",
     "keywords": [
-        ":vendor_name",
+        "rabol",
         "laravel",
-        "package_slug"
+        "laravel-simplesubscription-stripe"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/rabol/laravel-simplesubscription-stripe",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Steen Rabol",
+            "email": "steen@rabol.com",
             "role": "Developer"
         }
     ],
@@ -30,13 +30,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Rabol\\LaravelSimplesubscriptionStripe\\": "src",
+            "Rabol\\LaravelSimplesubscriptionStripe\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Rabol\\LaravelSimplesubscriptionStripe\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -50,10 +50,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Rabol\\LaravelSimplesubscriptionStripe\\LaravelSimplesubscriptionStripeServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\SkeletonFacade"
+                "LaravelSimplesubscriptionStripe": "Rabol\\LaravelSimplesubscriptionStripe\\LaravelSimplesubscriptionStripeFacade"
             }
         }
     },
