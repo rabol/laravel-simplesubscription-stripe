@@ -1,4 +1,4 @@
-# This is my package LaravelSimplesubscriptionStripe
+# Laravel Simplesub scription Stripe
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/rabol/laravel-simplesubscription-stripe.svg?style=flat-square)](https://packagist.org/packages/rabol/laravel-simplesubscription-stripe)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/rabol/laravel-simplesubscription-stripe/run-tests?label=tests)](https://github.com/rabol/laravel-simplesubscription-stripe/actions?query=workflow%3Arun-tests+branch%3Amain)
@@ -6,13 +6,18 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/rabol/laravel-simplesubscription-stripe.svg?style=flat-square)](https://packagist.org/packages/rabol/laravel-simplesubscription-stripe)
 
 ---
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+This package is not Laravel Cashier, Laravel Cashier is much more advanced and have several other features.
+If you want to get up and running with subscriptions and Stripe payments for your Laravel app quickly, then this package is for you.
 
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this laravel-simplesubscription-stripe
-2. Run "./configure-laravel-simplesubscription-stripe.sh" to run a script that will replace all placeholders throughout all the files
-3. Remove this block of text.
-4. Have fun creating your package.
-5. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
+It only contains 2 migrations - copied from Laravel Cashier - 4 Jobs, and a helper class.
+
+As this package uses the same DB structure as Laravel Cashier, it's very easy to switch if you need.
+
+So why do you even need this package ?
+
+Well, understanding Laravel Cashier andgetting it to work properly might take you 2-3 weeks, while with this package you will be up and running in a few hours.
+
+
 ---
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
