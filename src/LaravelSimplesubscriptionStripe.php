@@ -62,4 +62,13 @@ class LaravelSimplesubscriptionStripe
     {
         return LaravelSimplesubscriptionStripe::stripe()->checkout->sessions->create($options);
     }
+
+    public static function updateStripeCustomer(User $user, array $options)
+    {
+        try {
+            LaravelSimplesubscriptionStripe::stripe()->customers->update($user->stripe_id, $options);
+        } catch (ApiErrorException $e) {
+            Log::error($e->getMessage());
+        }
+    }
 }
