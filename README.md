@@ -126,7 +126,7 @@ class StripeController extends Controller
 
     public function cancled(Request $request)
     {
-        return view('stripe_cancled')
+        return view('stripe.cancled')
             ->with('request', $request);
     }
 
@@ -135,13 +135,27 @@ class StripeController extends Controller
         $session = LaravelSimplesubscriptionStripe::stripe()->checkout->sessions->retrieve($session_id);
         $customer = LaravelSimplesubscriptionStripe::stripe()->customers->retrieve($session->customer);
 
-        return view('stripe_success')
+        return view('stripe.success')
             ->with('session', $session)
             ->with('customer', $customer);
     }
 }
 
 ```
+
+If you have a customer that should be Tax exempt add something like this:
+
+```
+'tax_id_data' => [
+    [
+        'type' => 'eu_vat',
+        'value' => 'DK12345678'
+    ]
+    ],
+    'tax_exempt' => 'exempt'
+```
+
+to the $options when creating the customer in Stripe
 
 ## View files
 
