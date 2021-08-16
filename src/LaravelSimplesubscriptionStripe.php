@@ -3,9 +3,9 @@
 namespace Rabol\LaravelSimplesubscriptionStripe;
 
 use App\Models\User;
-use Stripe\StripeClient;
-use Stripe\Exception\ApiErrorException;
 use Illuminate\Support\Facades\Log;
+use Stripe\Exception\ApiErrorException;
+use Stripe\StripeClient;
 
 class LaravelSimplesubscriptionStripe
 {
@@ -34,15 +34,15 @@ class LaravelSimplesubscriptionStripe
 
     public static function createAsStripeCustomer(User $user, array $options = [])
     {
-        if (!is_null($user->stripe_id)) {
+        if (! is_null($user->stripe_id)) {
             return;
         }
 
-        if (!array_key_exists('name', $options) && $name = $user->name) {
+        if (! array_key_exists('name', $options) && $name = $user->name) {
             $options['name'] = $name;
         }
 
-        if (!array_key_exists('email', $options) && $email = $user->email) {
+        if (! array_key_exists('email', $options) && $email = $user->email) {
             $options['email'] = $email;
         }
 

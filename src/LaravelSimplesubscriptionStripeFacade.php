@@ -3,7 +3,6 @@
 namespace Rabol\LaravelSimplesubscriptionStripe;
 
 use Illuminate\Support\Facades\Facade;
-use LaravelSimplesubscriptionStripe;
 
 /**
  * @see \Rabol\LaravelSimplesubscriptionStripe\LaravelSimplesubscriptionStripe
