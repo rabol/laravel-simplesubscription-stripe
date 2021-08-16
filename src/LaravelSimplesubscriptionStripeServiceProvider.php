@@ -17,9 +17,9 @@ class LaravelSimplesubscriptionStripeServiceProvider extends PackageServiceProvi
          */
         $package
             ->name('laravel-simplesubscription-stripe')
-            ->hasConfigFile()
+            ->hasConfigFile('simplesubscription-stripe')
             ->hasViews()
-            ->hasMigration('create_laravel-simplesubscription-stripe_table')
+            ->hasMigration('add_stripe_fields_to_users_table')
             ->hasCommand(LaravelSimplesubscriptionStripeCommand::class);
     }
 }
