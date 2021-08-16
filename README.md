@@ -257,6 +257,22 @@ Success - /resources/views/stripe/success.blade.php
 @endsection
 ````
 
+web.php - /routes/web.php
+
+```
+Route::prefix('stripe')
+    ->as('stripe.')
+    ->middleware(['auth'])
+    ->group(function () {
+        Route::get('index', [StripeController::class, 'index'])->name('index');
+        Route::post('customer_portal', [StripeController::class,'gotoStripeCustomerPortal'])->name('customer_portal');
+        Route::post('checkout', [StripeController::class, 'checkout'])->name('checkout');
+
+        Route::get('cancled', [StripeController::class, 'cancled'])->name('cancled');
+        Route::get('success/{session_id}', [StripeController::class, 'success'])->name('success');
+});
+
+```
 ## Testing
 
 ```bash
