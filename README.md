@@ -155,7 +155,7 @@ If you have a customer that should be Tax exempt add something like this:
     'tax_exempt' => 'exempt'
 ```
 
-to the $options when creating the customer in Stripe
+to the $options when creating the customer in Stripe and remember to add a valid tax_rate in the subscription data
 
 ## View files
 
