@@ -97,7 +97,7 @@ class StripeController extends Controller
         $session = LaravelSimplesubscriptionStripe::createCheckoutSession([
             'allow_promotion_codes' => true,
             'success_url' => config('app.url') . '/stripe/success/{CHECKOUT_SESSION_ID}',
-            'cancel_url' => config('app.url') . '/stripe/cancled',
+            'cancel_url' => config('app.url') . '/stripe/canceled',
             'customer' => $user->stripe_id,
             'customer_update' => [
                 'name' => 'auto',
@@ -225,7 +225,7 @@ Index - /resources/views/stripe/index.blade.php
 @endsection
 
 ```
-Cancled - /resources/views/stripe/canceld.blade.php
+Cancled - /resources/views/stripe/canceled.blade.php
 ```
 @extends('layouts.app')
 
@@ -282,7 +282,7 @@ Route::prefix('stripe')
         Route::post('customer_portal', [StripeController::class,'gotoStripeCustomerPortal'])->name('customer_portal');
         Route::post('checkout', [StripeController::class, 'checkout'])->name('checkout');
 
-        Route::get('cancled', [StripeController::class, 'cancled'])->name('cancled');
+        Route::get('cancled', [StripeController::class, 'canceled'])->name('canceled');
         Route::get('success/{session_id}', [StripeController::class, 'success'])->name('success');
 });
 
