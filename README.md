@@ -225,7 +225,7 @@ Index - /resources/views/stripe/index.blade.php
 @endsection
 
 ```
-Cacncled - /resources/views/stripe/canceld.blade.php
+Cancled - /resources/views/stripe/canceld.blade.php
 ```
 @extends('layouts.app')
 
