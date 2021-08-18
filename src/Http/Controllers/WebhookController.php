@@ -20,15 +20,29 @@ class WebhookController extends Controller
     public function handleEvents(Request $request): Response
     {
         $payload = $request->getContent();
+
+        if (strlen($payload) == 0) {
+            return new Response('Bad request', 400);
+        }
+
         $sig_header = $request->header('Stripe-Signature');
+
+        if (is_null($sig_header)) { // Not from stripe
+            return new Response('Bad request', 400);
+        }
+
         $endpoint_secret = config('simplesubscription-stripe.stripe_webhook_secret');
+        $endpoint_tolerance = config('simplesubscription-stripe.stripe_webhook_tolerance');
 
         try {
-            $event = Webhook::constructEvent($payload, $sig_header, $endpoint_secret);
-            $method = 'handle' . Str::studly(str_replace('.', '_', $event->type)) . 'Event';
+            $event = Webhook::constructEvent($payload, $sig_header, $endpoint_secret, $endpoint_tolerance);
 
-            if (method_exists($this, $method)) {
-                return $this->{$method}($event);
+            if($event) {
+                $method = 'handle' . Str::studly(str_replace('.', '_', $event->type)) . 'Event';
+
+                if (method_exists($this, $method)) {
+                    return $this->{$method}($event);
+                }
             }
         } catch(UnexpectedValueException $e) {
             // Invalid payload
@@ -36,12 +50,7 @@ class WebhookController extends Controller
             return new Response('Invalid payload', 400);
         } catch(SignatureVerificationException $e) {
             // Invalid signature
-            Log::debug($sig_header);
-            Log::debug($endpoint_secret);
-            Log::debug($e->getMessage());
-            //Log::debug(json_decode($request->getContent(false)));
-            Log::error('Invalid signature:' , json_decode($payload,true));
-
+            Log::error('Invalid signature:' , $payload != '' ? json_decode($payload,true) : []);
             return new Response('Invalid signature', 400);
         }
 
