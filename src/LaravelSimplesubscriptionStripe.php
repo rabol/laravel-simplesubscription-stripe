@@ -72,7 +72,7 @@ class LaravelSimplesubscriptionStripe
         }
     }
 
-    public function updateTaxIdOnCustomer(User $user, string $value, string $type='eu_vat')
+    public static function updateTaxIdOnCustomer(User $user, string $value, string $type='eu_vat')
     {
         // first get all tax id's
         $taxIds = self::stripe()->customers->allTaxIds($user->stripe_id);
