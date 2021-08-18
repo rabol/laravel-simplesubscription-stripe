@@ -293,9 +293,11 @@ Route::prefix('stripe')
 ## Handling Stripe callbacks - webhooks
 
 To handle webhooks, create a new controller and extend it from ````Rabol\LaravelSimplesubscriptionStripe\Http\Controllers\WebhookController````
-and create a method for each even that you would like to handle.
+and create a method for each event that you would like to handle.
+
 The method should be the studly case name of the event prefixed with ```handle``` and postfixed with ```Event```
 like this:
+
 ```handleCustomerSubscriptionCreatedEvent($event)```
 
 Example:
