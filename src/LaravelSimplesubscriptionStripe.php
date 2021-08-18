@@ -21,7 +21,7 @@ class LaravelSimplesubscriptionStripe
 
     public static function gotoStripeCustomerPortal(User $user, string $return_url)
     {
-        return LaravelSimplesubscriptionStripe::stripe()
+        return self::stripe()
             ->billingPortal
             ->sessions
             ->create(
@@ -49,7 +49,7 @@ class LaravelSimplesubscriptionStripe
         try {
             // If the customer is in EU and you are in the EU, the $options can / should contain
             // tax id number and exempt status
-            $customer = LaravelSimplesubscriptionStripe::stripe()->customers->create($options);
+            $customer = self::stripe()->customers->create($options);
 
             $user->stripe_id = $customer->id;
             $user->save();
@@ -60,15 +60,40 @@ class LaravelSimplesubscriptionStripe
 
     public static function createCheckoutSession(array $options)
     {
-        return LaravelSimplesubscriptionStripe::stripe()->checkout->sessions->create($options);
+        return self::stripe()->checkout->sessions->create($options);
     }
 
     public static function updateStripeCustomer(User $user, array $options)
     {
         try {
-            LaravelSimplesubscriptionStripe::stripe()->customers->update($user->stripe_id, $options);
+            self::stripe()->customers->update($user->stripe_id, $options);
         } catch (ApiErrorException $e) {
             Log::error($e->getMessage());
+        }
+    }
+
+    public function updateTaxIdOnCustomer(User $user, string $value, string $type='eu_vat')
+    {
+        // first get all tax id's
+        $taxIds = self::stripe()->customers->allTaxIds($user->stripe_id);
+        $addNewTaxId = true;
+
+        if ($taxIds && $taxIds->count() != 0) {
+            foreach ($taxIds as $taxId) {
+                if ($taxId->type == $type && $taxId->value == $value) {
+                    $addNewTaxId = false;
+                }
+            }
+        }
+
+        if ($addNewTaxId) {
+            $taxId = self::stripe()->customers->createTaxId($user->stripe_id, [
+                'type' => $type,
+                'value' => $value,
+            ]);
+
+            $user->stripe_tax_id = $taxId->id;
+            $user->save();
         }
     }
 }
