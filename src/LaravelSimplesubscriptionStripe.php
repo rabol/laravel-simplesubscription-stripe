@@ -78,22 +78,30 @@ class LaravelSimplesubscriptionStripe
         $taxIds = self::stripe()->customers->allTaxIds($user->stripe_id);
         $addNewTaxId = true;
 
+        // check if the user have the TaxId
         if ($taxIds && $taxIds->count() != 0) {
             foreach ($taxIds as $taxId) {
-                if ($taxId->type == $type && $taxId->value == $value) {
+                if ($taxId->type == $type && ($taxId->value == $value || $taxId->value == str_replace('-', '', $value))) {
                     $addNewTaxId = false;
                 }
             }
         }
 
+        // Does not seem like the TaxId is attached to the user, so let's attach it
         if ($addNewTaxId) {
-            $taxId = self::stripe()->customers->createTaxId($user->stripe_id, [
-                'type' => $type,
-                'value' => $value,
-            ]);
+            try {
+                $taxId = self::stripe()->customers->createTaxId($user->stripe_id, [
+                    'type' => $type,
+                    'value' => $value,
+                ]);
 
-            $user->stripe_tax_id = $taxId->id;
-            $user->save();
+                if($taxId) {
+                    $user->stripe_tax_id = $taxId->id;
+                    $user->save();
+                }
+            } catch (\Exception $e) {
+                Log::error($e->getMessage());
+            }
         }
     }
 }
