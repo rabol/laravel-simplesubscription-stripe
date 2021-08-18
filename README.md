@@ -287,6 +287,45 @@ Route::prefix('stripe')
 });
 
 ```
+
+## Handling Stripe callbacks - webhooks
+
+To handle webhooks, create a new controller and extend it from ````Rabol\LaravelSimplesubscriptionStripe\Http\Controllers\WebhookController````
+and create a method for each even that you would like to handle.
+The method should be the studly case name of the event prefixed with ```handle``` and postfixed with ```Event```
+like this:
+```handleCustomerSubscriptionCreatedEvent($event)```
+
+Example:
+
+```
+<?php
+
+namespace App\Http\Controllers;
+
+
+use App\Models\User;
+use Rabol\LaravelSimplesubscriptionStripe\Http\Controllers\WebhookController;
+
+class StripeWebhookController extends WebhookController
+{
+    public function handleCustomerSubscriptionCreatedEvent($event)
+    {
+
+        $subscription = $event->data->object;
+        $user = User::where('stripe_id',$subscription->customer)->first();
+
+        // provision the subscription in the app
+        
+        return Response('All ok', 200);
+    }
+}
+```
+
+Please be aware that Stripe cannot guarantee that the events arrives at your endpoint in the correct order.
+One way to handle this is to create Jobs that will be executed when an event occur and the job should then be able to 
+handle 'retry' in case a 'updated' event arrives before a 'created event' arrive.
+
 ## Testing
 
 ```bash
