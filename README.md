@@ -42,6 +42,8 @@ This is the contents of the published config file:
 return [
     'stripe_key' => env('STRIPE_KEY'),
     'stripe_secret' => env('STRIPE_SECRET'),
+    'stripe_webhook_secret' => env('STRIPE_WEBHOOK_SECRET'), // Web hook secret
+    'stripe_webhook_tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300) // max time diff in webhook signature
 ];
 
 ```
