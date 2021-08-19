@@ -4,7 +4,7 @@ namespace Rabol\LaravelSimpleSubscriptionStripe\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Rabol\LaravelSimpleSubscriptionStripe\LaravelSimpleSubScriptionStripeServiceProvider;
+use Rabol\LaravelSimpleSubscriptionStripe\LaravelSimpleSubscriptionStripeServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -20,7 +20,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            LaravelSimpleSubScriptionStripeServiceProvider::class,
+            LaravelSimpleSubscriptionStripeServiceProvider::class,
         ];
     }
 
