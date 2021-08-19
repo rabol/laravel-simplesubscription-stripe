@@ -1,6 +1,6 @@
 {
     "name": "rabol/laravel-simplesubscription-stripe",
-    "description": "This is my package LaravelSimplesubscriptionStripe",
+    "description": "Get up and running with subscriptions in your Laravel app in minutes instead of days",
     "keywords": [
         "rabol",
         "laravel",
@@ -31,13 +31,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Rabol\\LaravelSimplesubscriptionStripe\\": "src",
-            "Rabol\\LaravelSimplesubscriptionStripe\\Database\\Factories\\": "database/factories"
+            "Rabol\\LaravelSimpleSubscriptionStripe\\": "src",
+            "Rabol\\LaravelSimpleSubscriptionStripe\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Rabol\\LaravelSimplesubscriptionStripe\\Tests\\": "tests"
+            "Rabol\\LaravelSimpleSubscriptionStripe\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -51,10 +51,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Rabol\\LaravelSimplesubscriptionStripe\\LaravelSimplesubscriptionStripeServiceProvider"
+                "Rabol\\LaravelSimpleSubscriptionStripe\\LaravelSimpleSubscriptionStripeServiceProvider"
             ],
             "aliases": {
-                "LaravelSimplesubscriptionStripe": "Rabol\\LaravelSimplesubscriptionStripe\\LaravelSimplesubscriptionStripeFacade"
+                "LaravelSimpleSubscriptionStripe": "LaravelSimpleSubscriptionStripeFacade"
             }
         }
     },

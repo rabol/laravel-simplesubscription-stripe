@@ -1,6 +1,6 @@
 <?php
 
-namespace Rabol\LaravelSimplesubscriptionStripe\Database\Factories;
+namespace Rabol\LaravelSimpleSubscriptionStripe\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 

@@ -1,2 +1,2 @@
 providers:
-  - Rabol\LaravelSimplesubscriptionStripe\LaravelSimplesubscriptionStripeServiceProvider
+  - Rabol\LaravelSimpleSubscriptionStripe\LaravelSimplesubScriptionStripeServiceProvider

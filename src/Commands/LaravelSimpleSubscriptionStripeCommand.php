@@ -1,10 +1,10 @@
 <?php
 
-namespace Rabol\LaravelSimplesubscriptionStripe\Commands;
+namespace Rabol\LaravelSimpleSubscriptionStripe\Commands;
 
 use Illuminate\Console\Command;
 
-class LaravelSimplesubscriptionStripeCommand extends Command
+class LaravelSimpleSubscriptionStripeCommand extends Command
 {
     public $signature = 'laravel-simplesubscription-stripe';
 

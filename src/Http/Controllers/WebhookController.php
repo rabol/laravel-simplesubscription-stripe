@@ -1,6 +1,6 @@
 <?php
 
-namespace Rabol\LaravelSimplesubscriptionStripe\Http\Controllers;
+namespace Rabol\LaravelSimpleSubscriptionStripe\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -21,7 +21,11 @@ class WebhookController extends Controller
     {
         $payload = $request->getContent();
 
-        if (strlen($payload) == 0) {
+        if (is_null($payload)) {
+            return new Response('Bad request', 400);
+        }
+
+        if (is_string($payload) && strlen($payload) == 0) {
             return new Response('Bad request', 400);
         }
 
@@ -37,24 +41,22 @@ class WebhookController extends Controller
         try {
             $event = Webhook::constructEvent($payload, $sig_header, $endpoint_secret, $endpoint_tolerance);
 
-            if($event) {
-                $method = 'handle' . Str::studly(str_replace('.', '_', $event->type)) . 'Event';
+            $method = 'handle' . Str::studly(str_replace('.', '_', $event->type)) . 'Event';
 
-                if (method_exists($this, $method)) {
-                    return $this->{$method}($event);
-                }
+            if (method_exists($this, $method)) {
+                return $this->{$method}($event);
             }
-        } catch(UnexpectedValueException $e) {
+        } catch (UnexpectedValueException $e) {
             // Invalid payload
-            Log::error('Invalid pay load:' , json_decode($payload,true));
+            Log::error('Invalid pay load:', json_decode($payload, true));
             return new Response('Invalid payload', 400);
-        } catch(SignatureVerificationException $e) {
+        } catch (SignatureVerificationException $e) {
             // Invalid signature
-            Log::error('Invalid signature:' , $payload != '' ? json_decode($payload,true) : []);
+            Log::error('Invalid signature:', $payload != '' ? json_decode($payload, true) : []);
             return new Response('Invalid signature', 400);
         }
 
-        $data = json_decode($payload,true);
+        $data = json_decode($payload, true);
         Log::debug('Missing: ' . $data['type'] . ' event handler');
         return new Response('Webhook Handled', 200);
     }

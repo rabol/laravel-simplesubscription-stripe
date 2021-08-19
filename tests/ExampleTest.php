@@ -1,6 +1,6 @@
 <?php
 
-namespace Rabol\LaravelSimplesubscriptionStripe\Tests;
+namespace Rabol\LaravelSimpleSubscriptionStripe\Tests;
 
 class ExampleTest extends TestCase
 {

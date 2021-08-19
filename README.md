@@ -26,13 +26,13 @@ composer require rabol/laravel-simplesubscription-stripe
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --provider="Rabol\LaravelSimplesubscriptionStripe\LaravelSimplesubscriptionStripeServiceProvider" --tag="laravel-simplesubscription-stripe-migrations"
+php artisan vendor:publish --provider="Rabol\LaravelSimpleSubscriptionStripe\LaravelSimpleSubscriptionStripeServiceProvider" --tag="laravel-simplesubscription-stripe-migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="Rabol\LaravelSimplesubscriptionStripe\LaravelSimplesubscriptionStripeServiceProvider" --tag="laravel-simplesubscription-stripe-config"
+php artisan vendor:publish --provider="Rabol\LaravelSimpleSubscriptionStripe\LaravelSimpleSubscriptionStripeServiceProvider" --tag="laravel-simplesubscription-stripe-config"
 ```
 
 This is the contents of the published config file:
@@ -52,7 +52,6 @@ return [
 
 Here is a simple example of how to use this package.
 
-
 ```php
 
 <?php
@@ -60,7 +59,7 @@ Here is a simple example of how to use this package.
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Rabol\LaravelSimplesubscriptionStripe\LaravelSimplesubscriptionStripe;
+use Rabol\LaravelSimplesubscriptionStripe\LaravelSimpleSubscriptionStripe;
 use Auth;
 
 class StripeController extends Controller
@@ -68,12 +67,12 @@ class StripeController extends Controller
     public function index()
     {
         return view('stripe.index')
-            ->with('stripePrices', LaravelSimplesubscriptionStripe::stripe()->prices->all());
+            ->with('stripePrices', LaravelSimpleSubscriptionStripe::stripe()->prices->all());
     }
 
     public function gotoStripeCustomerPortal(Request $request)
     {
-        return redirect(LaravelSimplesubscriptionStripe::gotoStripeCustomerPortal(Auth::user(), route('stripe.index')));
+        return redirect(LaravelSimpleSubscriptionStripe::gotoStripeCustomerPortal(Auth::user(), route('stripe.index')));
     }
 
     public function checkout(Request $request)
@@ -92,11 +91,11 @@ class StripeController extends Controller
                 ]];
 
             // If the user should be Tax Exempt, and the information to the options array
-            LaravelSimplesubscriptionStripe::createAsStripeCustomer($user, $options);
+            LaravelSimpleSubscriptionStripe::createAsStripeCustomer($user, $options);
         }
 
         $priceId = $request->input('priceId');
-        $session = LaravelSimplesubscriptionStripe::createCheckoutSession([
+        $session = LaravelSimpleSubscriptionStripe::createCheckoutSession([
             'allow_promotion_codes' => true,
             'success_url' => config('app.url') . '/stripe/success/{CHECKOUT_SESSION_ID}',
             'cancel_url' => config('app.url') . '/stripe/canceled',
@@ -134,8 +133,8 @@ class StripeController extends Controller
 
     public function success(Request $request, string $session_id)
     {
-        $session = LaravelSimplesubscriptionStripe::stripe()->checkout->sessions->retrieve($session_id);
-        $customer = LaravelSimplesubscriptionStripe::stripe()->customers->retrieve($session->customer);
+        $session = LaravelSimpleSubscriptionStripe::stripe()->checkout->sessions->retrieve($session_id);
+        $customer = LaravelSimpleSubscriptionStripe::stripe()->customers->retrieve($session->customer);
 
         return view('stripe.success')
             ->with('session', $session)
@@ -200,7 +199,7 @@ Index - /resources/views/stripe/index.blade.php
                             @foreach($stripePrices as $stripePrice)
                                 <tr>
                                     <td>{{$stripePrice->id}}</td>
-                                    <td>{{Rabol\LaravelSimplesubscriptionStripe\LaravelSimplesubscriptionStripe::stripe()->products->retrieve($stripePrice->product)->name}}</td>
+                                    <td>{{Rabol\LaravelSimpleSubscriptionStripe\LaravelSimpleSubscriptionStripe::stripe()->products->retrieve($stripePrice->product)->name}}</td>
                                     <td>
                                         @php
                                             $nf = new \NumberFormatter('es_ES', \NumberFormatter::CURRENCY);
@@ -292,7 +291,7 @@ Route::prefix('stripe')
 
 ## Handling Stripe callbacks - webhooks
 
-To handle webhooks, create a new controller and extend it from ````Rabol\LaravelSimplesubscriptionStripe\Http\Controllers\WebhookController````
+To handle webhooks, create a new controller and extend it from ````Rabol\LaravelSimpleSubscriptionStripe\Http\Controllers\WebhookController````
 and create a method for each event that you would like to handle.
 
 The method should be the studly case name of the event prefixed with ```handle``` and postfixed with ```Event```
@@ -309,7 +308,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\User;
-use Rabol\LaravelSimplesubscriptionStripe\Http\Controllers\WebhookController;
+use Rabol\LaravelSimpleSubscriptionStripe\Http\Controllers\WebhookController;
 
 class StripeWebhookController extends WebhookController
 {

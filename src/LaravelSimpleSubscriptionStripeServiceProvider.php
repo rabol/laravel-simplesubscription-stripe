@@ -1,12 +1,12 @@
 <?php
 
-namespace Rabol\LaravelSimplesubscriptionStripe;
+namespace Rabol\LaravelSimpleSubscriptionStripe;
 
-use Rabol\LaravelSimplesubscriptionStripe\Commands\LaravelSimplesubscriptionStripeCommand;
+use Rabol\LaravelSimpleSubscriptionStripe\Commands\LaravelSimpleSubscriptionStripeCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class LaravelSimplesubscriptionStripeServiceProvider extends PackageServiceProvider
+class LaravelSimpleSubscriptionStripeServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -20,6 +20,6 @@ class LaravelSimplesubscriptionStripeServiceProvider extends PackageServiceProvi
             ->hasConfigFile('simplesubscription-stripe')
             ->hasViews()
             ->hasMigration('add_stripe_fields_to_users_table')
-            ->hasCommand(LaravelSimplesubscriptionStripeCommand::class);
+            ->hasCommand(LaravelSimpleSubscriptionStripeCommand::class);
     }
 }

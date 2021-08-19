@@ -1,10 +1,10 @@
 <?php
 
-namespace Rabol\LaravelSimplesubscriptionStripe\Tests;
+namespace Rabol\LaravelSimpleSubscriptionStripe\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Rabol\LaravelSimplesubscriptionStripe\LaravelSimplesubscriptionStripeServiceProvider;
+use Rabol\LaravelSimpleSubscriptionStripe\LaravelSimpleSubscriptionStripeServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -13,14 +13,14 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Rabol\\LaravelSimplesubscriptionStripe\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Rabol\\LaravelSimpleSubscriptionStripe\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
     protected function getPackageProviders($app)
     {
         return [
-            LaravelSimplesubscriptionStripeServiceProvider::class,
+            LaravelSimpleSubscriptionStripeServiceProvider::class,
         ];
     }
 
