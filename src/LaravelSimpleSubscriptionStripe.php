@@ -1,6 +1,6 @@
 <?php
 
-namespace Rabol\LaravelSimpleSubcriptionStripe;
+namespace Rabol\LaravelSimpleSubscriptionStripe;
 
 use Illuminate\Support\Facades\Log;
 use Stripe\Exception\ApiErrorException;

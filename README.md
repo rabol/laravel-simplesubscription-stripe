@@ -59,7 +59,7 @@ Here is a simple example of how to use this package.
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Rabol\LaravelSimplesubscriptionStripe\LaravelSimpleSubscriptionStripe;
+use Rabol\LaravelSimpleSubscriptionStripe\LaravelSimpleSubscriptionStripe;
 use Auth;
 
 class StripeController extends Controller

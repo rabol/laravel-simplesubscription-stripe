@@ -4,7 +4,7 @@ namespace Rabol\LaravelSimpleSubscriptionStripe\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Rabol\LaravelSimpleSubscriptionStripe\LaravelSimpleSubscriptionStripeServiceProvider;
+use Rabol\LaravelSimpleSubscriptionStripe\LaravelSimpleSubScriptionStripeServiceProvider;
 
 class TestCase extends Orchestra
 {
