@@ -10,13 +10,13 @@ return new class extends Migration
     {
         if (! Schema::hasColumn('users', 'stripe_id')) {
             Schema::table('users', function (Blueprint $table) {
-                $table->string('stripe_id');
+                $table->string('stripe_id')->nullable();
             });
         }
 
         if (! Schema::hasColumn('users', 'stripe_tax_id')) {
             Schema::table('users', function (Blueprint $table) {
-                $table->string('stripe_tax_id');
+                $table->string('stripe_tax_id')->nullable();
             });
         }
     }
