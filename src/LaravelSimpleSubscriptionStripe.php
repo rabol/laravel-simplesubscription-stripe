@@ -8,13 +8,10 @@ use Stripe\StripeClient;
 
 class LaravelSimpleSubscriptionStripe
 {
-    public const STRIPE_VERSION = '2020-08-27';
-
     public static function stripe(array $options = []): StripeClient
     {
         return new StripeClient(array_merge([
             'api_key' => $options['api_key'] ?? config('simplesubscription-stripe.stripe_secret'),
-            'stripe_version' => static::STRIPE_VERSION,
         ], $options));
     }
 
