@@ -81,6 +81,8 @@ class StripeController extends Controller
 
         if (!$user->stripe_id) {
             $options = [
+                    'email' => $user->email,
+                    'name' => $user->name,
                     'address' => [
                     'city' => $user->city ?? '',
                     'line1' => $user->adr_line_1 ?? '',
@@ -91,7 +93,7 @@ class StripeController extends Controller
                 ]];
 
             // If the user should be Tax Exempt, and the information to the options array
-            LaravelSimpleSubscriptionStripe::createAsStripeCustomer($user, $options);
+            LaravelSimpleSubscriptionStripe::createAsStripeCustomer($options);
         }
 
         $priceId = $request->input('priceId');
